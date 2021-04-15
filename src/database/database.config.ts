@@ -7,15 +7,40 @@ import {
 } from "../environment";
 
 class DatabaseConfiguration {
-  static host = DATABASE_HOST;
+  /**
+   * The database host
+   *
+   * @type {string}
+   */
+  static readonly host = DATABASE_HOST;
 
-  static databaseName = DATABASE_NAME;
+  /**
+   * The database name
+   *
+   * @type {string}
+   */
+  static readonly databaseName = DATABASE_NAME;
 
-  static password = DATABASE_PASSWORD;
+  /**
+   * The database user password
+   *
+   * @type {string}
+   */
+  static readonly password = DATABASE_PASSWORD;
 
-  static port = Number(DATABASE_PORT);
+  /**
+   * The database port
+   *
+   * @type {number}
+   */
+  static readonly port = Number(DATABASE_PORT);
 
-  static username = DATABASE_USERNAME;
+  /**
+   * The database user name
+   *
+   * @type {string}
+   */
+  static readonly username = DATABASE_USERNAME;
 }
 
 export default DatabaseConfiguration;

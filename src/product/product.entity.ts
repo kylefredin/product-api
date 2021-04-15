@@ -6,6 +6,11 @@ import { RecordLinksDto } from "../dto/recordLinks.dto";
 
 @Entity()
 class Product {
+  /**
+   * The product identifier
+   *
+   * @type {number | undefined}
+   */
   @PrimaryGeneratedColumn()
   @ApiProperty({
     description: "The product identifier",
@@ -14,8 +19,13 @@ class Product {
     required: false,
     type: "number",
   })
-  id: number;
+  id: number | undefined;
 
+  /**
+   * The product name
+   *
+   * @type {string}
+   */
   @Column({ type: "varchar", length: ProductConfiguration.nameMaximumLength })
   @MinLength(ProductConfiguration.nameMinimumLength)
   @MaxLength(ProductConfiguration.nameMaximumLength)
@@ -25,8 +35,13 @@ class Product {
     nullable: false,
     required: true,
   })
-  name: string;
+  name = "";
 
+  /**
+   * The product description
+   *
+   * @type {string}
+   */
   @Column({
     type: "varchar",
     length: ProductConfiguration.descriptionMaximumLength,
@@ -38,8 +53,13 @@ class Product {
     nullable: false,
     required: true,
   })
-  description: string;
+  description = "";
 
+  /**
+   * The product price
+   *
+   * @type {number}
+   */
   @Column({ type: "int", precision: ProductConfiguration.pricePrecision })
   @Min(ProductConfiguration.priceMinimum)
   @Max(ProductConfiguration.priceMaximum)
@@ -50,7 +70,7 @@ class Product {
     required: true,
     type: "float",
   })
-  price: number;
+  price = 0;
 
   links? = new RecordLinksDto();
 }

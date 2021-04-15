@@ -1,0 +1,30 @@
+services:
+  products:
+    container_name: products
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+      - 9229:9229
+    command: npm run start:debug
+    env_file:
+      - .env
+    networks:
+      - webnet
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    env_file: .env
+    ports: ["3306:3306"]
+    networks:
+      - webnet
+    security_opt:
+      - seccomp:unconfined
+networks:
+  webnet:

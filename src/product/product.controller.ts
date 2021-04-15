@@ -9,6 +9,7 @@ import {
   Put,
   Query,
 } from "@nestjs/common";
+import { ApiBody, ApiNotFoundResponse, ApiResponse } from "@nestjs/swagger";
 import { Product } from "./product.entity";
 import { ProductService } from "./product.service";
 import { ProductDto } from "../dto/product.dto";
@@ -36,6 +37,11 @@ class ProductController {
    * @return {Promise<ProductsDto>}
    */
   @Get()
+  @ApiResponse({
+    status: 200,
+    description: "The pagination set of records",
+    type: ProductsDto,
+  })
   public async findAll(@Query() query: PaginationDto): Promise<ProductsDto> {
     const [products, totalRecords] = await this.productService.findAll(query);
 
@@ -59,6 +65,12 @@ class ProductController {
    * @return {Promise<ProductDto>}
    */
   @Get(":id")
+  @ApiResponse({
+    status: 200,
+    description: "The found record",
+    type: ProductDto,
+  })
+  @ApiNotFoundResponse()
   public async findOne(@Param("id") id: number): Promise<ProductDto> {
     const product = await this.productService.findOne(id);
 
@@ -80,6 +92,12 @@ class ProductController {
    * @return {Promise<ProductDto>}
    */
   @Post()
+  @ApiBody({ type: ProductDto })
+  @ApiResponse({
+    status: 201,
+    description: "The record has been successfully created.",
+    type: ProductDto,
+  })
   public async create(@Body() body: Product): Promise<ProductDto> {
     const product = await this.productService.create(body);
 
@@ -97,6 +115,13 @@ class ProductController {
    * @return {Promise<ProductDto>}
    */
   @Put(":id")
+  @ApiBody({ type: ProductDto })
+  @ApiResponse({
+    status: 200,
+    description: "The record has been successfully updated.",
+    type: ProductDto,
+  })
+  @ApiNotFoundResponse()
   public async update(
     @Param("id") id: number,
     @Body() body: Product,

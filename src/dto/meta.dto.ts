@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsInt, Max, Min } from "class-validator";
 import { AppConfiguration } from "../app/app.config";
 
@@ -12,6 +13,11 @@ class MetaDto {
    */
   @IsInt()
   @Min(0)
+  @ApiProperty({
+    description: "The total number of records",
+    nullable: false,
+    type: "number",
+  })
   public totalRecords = 0;
 
   /**
@@ -21,6 +27,11 @@ class MetaDto {
    */
   @IsInt()
   @Min(1)
+  @ApiProperty({
+    description: "The current page",
+    nullable: false,
+    type: "number",
+  })
   public currentPage: number = AppConfiguration.defaultPage;
 
   /**
@@ -31,6 +42,11 @@ class MetaDto {
   @IsInt()
   @Min(1)
   @Max(AppConfiguration.maximumPerPage)
+  @ApiProperty({
+    description: "The number of records to return per page",
+    nullable: false,
+    type: "number",
+  })
   public perPage: number = AppConfiguration.defaultPerPage;
 
   /**
@@ -40,6 +56,11 @@ class MetaDto {
    */
   @IsInt()
   @Min(0)
+  @ApiProperty({
+    description: "The total number of pages",
+    nullable: false,
+    type: "number",
+  })
   public get totalPages(): number {
     if (!this.totalRecords) {
       return 0;

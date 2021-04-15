@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Product } from "../product/product.entity";
 
 /**
@@ -7,6 +8,7 @@ class ProductDto {
   /**
    * @type {Product}
    */
+  @ApiProperty()
   product: Product;
 }
 

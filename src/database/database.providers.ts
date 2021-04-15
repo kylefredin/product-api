@@ -24,7 +24,7 @@ const databaseProviders = [
         username: DatabaseConfiguration.username,
         password: DatabaseConfiguration.password,
         database: DatabaseConfiguration.databaseName,
-        entities: [__dirname + "/../**/*.entity.ts"],
+        entities: ["dist/**/*.entity{.ts,.js}"],
         synchronize: true,
       }).then((connection: Connection) => connection),
   },

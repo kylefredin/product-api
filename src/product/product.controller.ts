@@ -93,7 +93,7 @@ class ProductController {
    * @return {Promise<ProductDto>}
    */
   @Post()
-  @ApiBody({ type: ProductDto })
+  @ApiBody({ type: Product })
   @ApiResponse({
     status: 201,
     description: "The record has been successfully created.",
@@ -116,7 +116,7 @@ class ProductController {
    * @return {Promise<ProductDto>}
    */
   @Put(":id")
-  @ApiBody({ type: ProductDto })
+  @ApiBody({ type: Product })
   @ApiResponse({
     status: 200,
     description: "The record has been successfully updated.",

@@ -21,17 +21,15 @@ $ npm i
 ## Running the app
 
 ```bash
-# development
 $ docker-compose up
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## API Urls
+
+- [Products](http://localhost:3000/products)
+- [Swagger Documentation](http://localhost:3000/docs)
+
+## Testing
 
 ```bash
 # unit tests

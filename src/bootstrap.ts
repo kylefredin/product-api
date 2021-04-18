@@ -13,8 +13,17 @@ class Bootstrap {
    * @return {void}
    */
   public setup(app: INestApplication): void {
+    this.setupCors(app);
     this.setupGlobalPipe(app);
     this.setupSwagger(app);
+  }
+
+  /**
+   * @param {INestApplication} app
+   * @return {void}
+   */
+  private setupCors(app: INestApplication): void {
+    app.enableCors();
   }
 
   /**

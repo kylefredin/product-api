@@ -19,7 +19,7 @@ class Product {
     required: false,
     type: "number",
   })
-  id: number | undefined;
+  public id: number | undefined;
 
   /**
    * The product name
@@ -35,7 +35,7 @@ class Product {
     nullable: false,
     required: true,
   })
-  name = "";
+  public name = "";
 
   /**
    * The product description
@@ -53,7 +53,7 @@ class Product {
     nullable: false,
     required: true,
   })
-  description = "";
+  public description = "";
 
   /**
    * The product price
@@ -70,9 +70,12 @@ class Product {
     required: true,
     type: "float",
   })
-  price = 0;
+  public price = 0;
 
-  links? = new RecordLinksDto();
+  /**
+   * @type {RecordLinksDto | undefined}
+   */
+  public links?: RecordLinksDto | undefined;
 }
 
 export default Product;

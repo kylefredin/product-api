@@ -46,9 +46,7 @@ export class ProductService {
    * @return {Promise<Product>}
    */
   public async findOne(id: number): Promise<Product | undefined> {
-    const product = await this.productRepository.findOne(id, {
-      relations: ["genres", "keywords", "companies"],
-    });
+    const product = await this.productRepository.findOne(id);
 
     if (!product) {
       return product;
@@ -88,5 +86,15 @@ export class ProductService {
       .execute();
 
     return (this.findOne(id) as unknown) as Product;
+  }
+
+  /**
+   * Removes the product from the repository
+   *
+   * @param {Product} product
+   * @return {Promise<void>}
+   */
+  public async remove(product: Product): Promise<void> {
+    await this.productRepository.remove(product);
   }
 }

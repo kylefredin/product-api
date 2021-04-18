@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpException,
   HttpStatus,
@@ -137,6 +138,28 @@ class ProductController {
     response.product = await this.productService.update(id, body);
 
     return response;
+  }
+
+  /**
+   * DELETE /products/:id route handler
+   *
+   * @param {number} id
+   * @return {Promise<void>}
+   */
+  @Delete(":id")
+  @ApiResponse({
+    status: 200,
+    description: "The record was deleted",
+  })
+  @ApiNotFoundResponse()
+  public async delete(@Param("id") id: number): Promise<void> {
+    const product = await this.productService.findOne(id);
+
+    if (!product) {
+      throw new HttpException("Product not found", HttpStatus.NOT_FOUND);
+    }
+
+    await this.productService.remove(product);
   }
 }
 

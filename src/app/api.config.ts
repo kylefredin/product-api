@@ -11,7 +11,7 @@ class ApiConfiguration {
    *
    * @type {string}
    */
-  static readonly documentationPath = "api";
+  static readonly documentationPath = "docs";
 
   /**
    * The title to use in the Swagger API documentation
